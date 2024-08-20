@@ -5,6 +5,8 @@ pipeline {
         DOCKER_IMAGE = 'kunalmac25/react-example-image'
         IMAGE_TAG = 'latest'
         KUBECONFIG = '/var/run/secrets/kubernetes.io/serviceaccount/kubeconfig'
+        KUBECTL_DIR = '/home/jenkins/bin'
+        PATH = "${KUBECTL_DIR}:${PATH}"
     }
 
     stages {
@@ -26,7 +28,7 @@ pipeline {
                 }
             }
         }
-        
+
         stage('Create Deployment YAML') {
             steps {
                 script {
