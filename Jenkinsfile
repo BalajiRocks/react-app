@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = 'kunalmac25/react-example-image'
+        DOCKER_IMAGE = 'nginx'
         IMAGE_TAG = 'latest'
         KUBECONFIG = '/home/jenkins/.kube/config'
     }
