@@ -59,6 +59,14 @@ pipeline {
             }
         }
 
+        stage('Print Deployment YAML') {
+            steps {
+                script {
+                    sh 'cat deployment.yaml'
+                }
+            }
+        }
+
         stage('Deploy to Minikube') {
             steps {
                 script {
