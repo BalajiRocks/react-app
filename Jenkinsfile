@@ -30,7 +30,7 @@ pipeline {
         stage('Deploy to Minikube') {
             steps {
                 script {
-                    sh '/home/jenkins/bin/kubectl apply -f deployment.yaml'
+                    sh '/home/jenkins/bin/kubectl apply -f deployment.yaml -n jenkins-project'
                 }
             }
         }
@@ -38,7 +38,7 @@ pipeline {
         stage('Verify Deployment') {
             steps {
                 script {
-                    sh '/home/jenkins/bin/kubectl get pods -o wide'
+                    sh '/home/jenkins/bin/kubectl get pods -o wide -n jenkins-project'
                 }
             }
         }
