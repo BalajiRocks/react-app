@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = 'balajirocks/test-react-app'
+        DOCKER_IMAGE = 'kunalmac25/react-example-image'
         IMAGE_TAG = 'latest'
         KUBECONFIG = '/var/run/secrets/kubernetes.io/serviceaccount/kubeconfig'
     }
@@ -11,32 +11,6 @@ pipeline {
         stage('Clone Repository') {
             steps {
                 git credentialsId: 'github_token', url: 'https://github.com/BalajiRocks/react-app.git', branch: 'main'
-            }
-        }
-
-        stage('Build Docker Image') {
-            steps {
-                script {
-                    sh 'docker build -t ${DOCKER_IMAGE}:${IMAGE_TAG} .'
-                }
-            }
-        }
-
-        stage('Push Docker Image to Docker Hub') {
-            steps {
-                script {
-                    docker.withRegistry('', 'docker-hub-credentials-id') {
-                        sh "docker push ${DOCKER_IMAGE}:${IMAGE_TAG}"
-                    }
-                }
-            }
-        }
-        
-	   stage('Cleanup') {
-            steps {
-                script {
-                    sh "docker rmi ${DOCKER_IMAGE}:${IMAGE_TAG}"
-                }
             }
         }
 
@@ -96,4 +70,3 @@ pipeline {
         }
     }
 }
-
