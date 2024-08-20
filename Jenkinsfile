@@ -32,7 +32,7 @@ pipeline {
         stage('Create Deployment YAML') {
             steps {
                 script {
-                    sh """
+                    sh '''
                     cat <<EOF > deployment.yaml
                     apiVersion: apps/v1
                     kind: Deployment
@@ -54,7 +54,7 @@ pipeline {
                             ports:
                             - containerPort: 5000
                     EOF
-                    """
+                    '''
                 }
             }
         }
